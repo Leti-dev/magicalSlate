@@ -1,8 +1,8 @@
 'use strict';
 
 class ColorPicker{
-	constructor(cpId){
-		this.c = document.querySelector(cpId);
+	constructor(colorPickerId){
+		this.c = document.querySelector(colorPickerId);
 		this.ctx = this.c.getContext("2d");
 		this.height = this.c.height;
 		this.width = this.c.width;
@@ -33,6 +33,3 @@ class ColorPicker{
 		// Récupérer la couleur dans la palette
 	}
 }
-
-var colorPicker = new ColorPicker("#colorPicker");
-console.log(colorPicker);

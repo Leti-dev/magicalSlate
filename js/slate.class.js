@@ -1,8 +1,8 @@
 'use strict';
 
 class Slate{
-	constructor(sId){
-		this.c = document.querySelector(sId);
+	constructor(slateId){
+		this.c = document.querySelector(slateId);
 		this.ctx = this.c.getContext("2d");
 		this.height = this.c.height;
 		this.width = this.c.width;
@@ -12,6 +12,7 @@ class Slate{
         this.ctx.lineJoin = "round";
         this.ctx.fillStyle = "#ffffff";
         this.ctx.fillRect(0, 0, this.width, this.height);
+
 	}
 
 	// METHODS :

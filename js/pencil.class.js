@@ -18,15 +18,29 @@ class Pencil{
 		// Changer la couleur du stylo
 	}
 
-	startDrawing(){
-		// Commencer à dessiner => quand le stylo se pose
+	startDrawing(e, slate){
+	// Commencer à dessiner => quand le stylo se pose
+		if(e.button == 0){
+			slate.isDrawing = true;
+			slate.ctx.lineWidth = this.lineWidth;
+			slate.ctx.strokeStyle = this.color;
+			this.posX = e.offsetX;
+			this.posY = e.offsetY;
+		}
 	}
 
-	drawing(){
-		// Dessiner => souris cliqué
+	drawing(e, slate){
+	// Dessiner => souris cliqué
+		if(slate.isDrawing){
+			slate.ctx.beginPath();
+			slate.ctx.moveTo(this.posX, this.posY);
+			slate.ctx.lineTo(e.offsetX, e.offsetY);
+			slate.ctx.stroke();
+
+			this.posX = e.offsetX;
+			this.posY = e.offsetY;
+		}
 	}
 
-	stopDrawing(){
-		// Arrêter de dessiner => quand on relache la souris ou qu'on sort du canvas
-	}
+
 }
