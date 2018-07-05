@@ -4,18 +4,22 @@ class Pencil{
 	constructor(){
 		this.lineWidth = 1;
 		this.color = "black";
+		this.multiColor = false;
+		this.hue = 0;
 		this.posX = 0;
 		this.posY = 0;
 	}
 
 	// METHODS :
 
-	changeLineWidth(){
-		// Changer la taille du stylo
+	changeLineWidth(lineWidth){
+		// Changer l'épaisseur du stylo
+		this.lineWidth = lineWidth;
 	}
 
-	changeColor(){
-		// Changer la couleur du stylo
+	changeColor(color){
+	// Changer la couleur du stylo
+		this.color = color;
 	}
 
 	startDrawing(e, slate){
@@ -26,20 +30,36 @@ class Pencil{
 			slate.ctx.strokeStyle = this.color;
 			this.posX = e.offsetX;
 			this.posY = e.offsetY;
+			$("#draw").css("cursor", "url(img/pen-icon.png), crosshair");
 		}
 	}
 
 	drawing(e, slate){
-	// Dessiner => souris cliqué
-		if(slate.isDrawing){
-			slate.ctx.beginPath();
-			slate.ctx.moveTo(this.posX, this.posY);
-			slate.ctx.lineTo(e.offsetX, e.offsetY);
-			slate.ctx.stroke();
+		// Dessiner => souris cliqué
+		if(slate.isDrawing && !slate.picker){
+			if(this.multiColor){
+				slate.ctx.strokeStyle = "hsl(" + this.hue + ", 100%, 50%, 1)";
 
-			this.posX = e.offsetX;
-			this.posY = e.offsetY;
+				this.hue +=1;
+				if(this.hue > 360){
+					this.hue = 0;
+				}
+
+			}else{
+				this.multiColor = false;
+				slate.ctx.strokeStyle = this.color;
+			}
+
+		slate.ctx.beginPath();
+		slate.ctx.moveTo(this.posX, this.posY);
+		slate.ctx.lineTo(e.offsetX, e.offsetY);
+		slate.ctx.stroke();
+
+		this.posX = e.offsetX;
+		this.posY = e.offsetY;
+
 		}
+
 	}
 
 

@@ -39,7 +39,7 @@ li{
 	background-color: white;
 }
 
-.round{
+.round, #img{
 	width: 1.5rem;
 	height: 1.5rem;
 	border-radius: 50%;
@@ -80,4 +80,42 @@ li{
 
 #tools span, .lineWidth, .round{
 	cursor: pointer;
+}
+
+#palette-container {
+	display: inline-block;
+	width: 300px;
+	height: 400px;
+	position: relative;
+}
+
+#img-container {
+	position: fixed;
+	top: 0; right: 0; bottom: 100%; left: 0;
+	z-index: 1;
+	overflow: hidden;
+
+	background-color: rgba(0, 0, 0, 0.6);
+	transition: all .5s ease;
+}
+
+.zoom {
+	display: none;
+	position: absolute;
+	/* left: -99999px;
+	top:  -99999px; */
+	width: 60px;
+	height: 60px;
+	background-color: blue;
+	border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+	border-width: 3px;
+	border-color: #000000ba;
+    border-style: solid;
+	pointer-events: none;
+}
+
+#colorPicker{
+	cursor: none;
 }

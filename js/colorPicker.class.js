@@ -29,7 +29,17 @@ class ColorPicker{
 
 	// METHODS :
 
-	getColor(){
-		// Récupérer la couleur dans la palette
+	getColor(e, pencil){
+	// Récupérer la couleur dans la palette
+		var color = this.ctx.getImageData(e.offsetX, e.offsetY, 1, 1);
+		pencil.color = "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")";
+	}
+
+	changeZoom(e){
+		$(".zoom").css("display", "block");
+		$(".zoom").css("left", e.offsetX);
+		$(".zoom").css("top", e.offsetY);
+		var color = this.ctx.getImageData(e.offsetX, e.offsetY, 1, 1);
+		$(".zoom").css("background-color", "rgb(" + color.data[0] + "," + color.data[1] + "," + color.data[2] + ")");
 	}
 }
